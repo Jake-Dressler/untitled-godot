@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://dj3qagibkgufa"]
+
+[ext_resource type="Script" uid="uid://brskokmw34dyu" path="res://run_world.gd" id="1_wankq"]
+
+[node name="RunWorld" type="Node3D"]
+script = ExtResource("1_wankq")
+
+[node name="Terrain" type="MeshInstance3D" parent="."]
+
+[node name="PlayerSpawn" type="Marker3D" parent="."]

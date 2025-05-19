@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://dt82h0sbocb03"]
+
+[ext_resource type="Script" uid="uid://b2j0alvhwult7" path="res://arcade_machine.gd" id="1_ynv5w"]
+[ext_resource type="Script" uid="uid://u6oy5j5oqefy" path="res://screen.gd" id="2_cob0o"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ynv5w"]
+size = Vector3(0.75, 0.75, 0.1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cob0o"]
+albedo_color = Color(0.129558, 0.129558, 0.129558, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ynv5w"]
+size = Vector3(0.75, 0.75, 0.1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cob0o"]
+size = Vector3(1, 1.75, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_glkj4"]
+size = Vector3(1, 1.75, 1)
+
+[node name="ArcadeMachine" type="Node3D"]
+script = ExtResource("1_ynv5w")
+
+[node name="Screen" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0.5)
+script = ExtResource("2_cob0o")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Screen"]
+mesh = SubResource("BoxMesh_ynv5w")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_cob0o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Screen"]
+shape = SubResource("BoxShape3D_ynv5w")
+
+[node name="Body" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body"]
+mesh = SubResource("BoxMesh_cob0o")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Body"]
+shape = SubResource("BoxShape3D_glkj4")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.230583, 0.51)
+text = "PLACE
+HOLDER"
