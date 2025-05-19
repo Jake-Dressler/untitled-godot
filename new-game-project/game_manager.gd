@@ -10,7 +10,7 @@ func start_run():
 	if hub_scene:
 		hub_scene.queue_free()
 		hub_scene = null
-
+		
 	# Load and add run world
 	current_run = run_world_scene.instantiate()
 	get_tree().get_root().add_child(current_run)
@@ -18,3 +18,4 @@ func start_run():
 	# Move player to spawn
 	var spawn = current_run.get_node("PlayerSpawn")
 	player.global_transform = spawn.global_transform
+	print("Player position after teleport:", player.global_transform.origin)

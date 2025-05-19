@@ -9,6 +9,9 @@ extends Node3D
 
 func _ready():
 	generate_terrain()
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.2, 0.8, 0.3)
+	$Terrain.material_override = mat
 
 func generate_terrain():
 	var st = SurfaceTool.new()
@@ -41,6 +44,10 @@ func generate_terrain():
 
 	var mesh = st.commit()
 	$Terrain.mesh = mesh
+	print("Mesh assigned:", mesh)
 
 func noise(x: float, z: float, rng: RandomNumberGenerator) -> float:
-	return sin(x * 0.1 + rng.randf()) * cos(z * 0.1 + rng.randf())
+	var fx = float(x) * 0.1
+	var fz = float(z) * 0.1
+	rng.seed = int(x) * 73856093 ^ int(z) * 19349663 ^ seed
+	return sin(fx) * cos(fz) * hScale
