@@ -15,7 +15,8 @@ func start_run():
 	current_run = run_world_scene.instantiate()
 	get_tree().get_root().add_child(current_run)
 
-	# Move player to spawn
-	var spawn = current_run.get_node("PlayerSpawn")
-	player.global_transform = spawn.global_transform
-	print("Player position after teleport:", player.global_transform.origin)
+	current_run.connect("terrain_ready", func():
+		var spawn = current_run.get_node("PlayerSpawn")
+		player.global_position = spawn.global_position
+		add_child(player)  # or move it if already added elsewhere
+)
