@@ -12,14 +12,11 @@ extends Node3D
 signal terrain_ready
 
 func _ready():
-	generate_terrain()
 	var player = $Player  # Set this from your player scene
 	var spawn = $PlayerSpawn
 	player.global_position = spawn.global_position + Vector3.UP * 2
 	#add_child(player)
-
 	emit_signal("terrain_ready")
-	
 	#mat.albedo_color = Color(0.2, 0.8, 0.3)
 	#$Terrain.material_override = mat
 
