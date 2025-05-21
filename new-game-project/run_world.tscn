@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dj3qagibkgufa"]
+[gd_scene load_steps=7 format=3 uid="uid://dj3qagibkgufa"]
 
 [ext_resource type="Script" uid="uid://brskokmw34dyu" path="res://run_world.gd" id="1_wankq"]
 [ext_resource type="PackedScene" uid="uid://4iallt8c2x55" path="res://player.tscn" id="2_vqopv"]
@@ -6,6 +6,9 @@
 [sub_resource type="Environment" id="Environment_wankq"]
 background_mode = 1
 background_color = Color(0.117647, 0.258824, 0.392157, 1)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_vqopv"]
+backface_collision = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vqopv"]
 
@@ -15,18 +18,21 @@ background_color = Color(0.117647, 0.258824, 0.392157, 1)
 script = ExtResource("1_wankq")
 
 [node name="PlayerSpawn" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.4244, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 16.2013, 50)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_wankq")
 
 [node name="Player" parent="." instance=ExtResource("2_vqopv")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 20, 50)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 16.9308, 50)
 
 [node name="Terrain" type="StaticBody3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Terrain"]
 skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Terrain"]
+shape = SubResource("ConcavePolygonShape3D_vqopv")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20, 0)
@@ -35,8 +41,9 @@ transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 20,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 10, 50)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 14.5694, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.09314, 0)
 shape = SubResource("BoxShape3D_vqopv")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.09274, 0)
 mesh = SubResource("BoxMesh_n2lhc")

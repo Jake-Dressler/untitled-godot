@@ -10,13 +10,14 @@ func start_run():
 	if hub_scene:
 		hub_scene.queue_free()
 		hub_scene = null
-		
-	# Load and add run world
+	
 	current_run = run_world_scene.instantiate()
-	get_tree().get_root().add_child(current_run)
-
+	
 	current_run.connect("terrain_ready", func():
 		var spawn = current_run.get_node("PlayerSpawn")
 		player.global_position = spawn.global_position
-		add_child(player)  # or move it if already added elsewhere
+		#current_run.add_child(player)  # or move it if already added elsewhere
+		#print('child added')
 )
+
+	get_tree().get_root().add_child(current_run)
