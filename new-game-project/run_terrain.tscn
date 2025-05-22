@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbu37mrwq2742"]
+
+[ext_resource type="Script" uid="uid://da4vo3t4mnypu" path="res://run_terrain.gd" id="1_17g30"]
+[ext_resource type="PackedScene" uid="uid://4iallt8c2x55" path="res://player.tscn" id="2_xa8ds"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_xa8ds"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xa8ds"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_j3gl0"]
+
+[node name="RunTerrain" type="Node3D"]
+script = ExtResource("1_17g30")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_xa8ds")
+debug_color = Color(0, 0.6, 0.701961, 0.8)
+
+[node name="Player" parent="." instance=ExtResource("2_xa8ds")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 30, 50)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 120, 0)
+
+[node name="Box" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 25, 50)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Box"]
+shape = SubResource("BoxShape3D_xa8ds")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Box"]
+mesh = SubResource("BoxMesh_j3gl0")

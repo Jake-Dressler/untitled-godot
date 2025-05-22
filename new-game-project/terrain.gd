@@ -1,8 +1,5 @@
 @tool
-extends StaticBody3D
-
-@onready var terrain_mesh: StaticBody3D = $MeshInstance3D
-@onready var collision_shape: CollisionShape3D = $CollisionShape3D
+extends MeshInstance3D
 
 const size := 256.0
 
@@ -21,7 +18,10 @@ const size := 256.0
 @export_range(4.0, 128.0, 4.0) var height := 64.0:
 	set(new_height):
 		height = new_height
-		terrain_mesh.material_override.set_shader_parameter("height", height * 2.0)
+		if material_override:
+			material_override.set_shader_parameter("height", height * 2.0)
+		else:
+			print("material_override is null, skipping shader param update")
 		update_mesh()
 
 func get_height(x: float, y: float) -> float:
@@ -63,4 +63,4 @@ func update_mesh() -> void:
 	
 	var array_mesh := ArrayMesh.new()
 	array_mesh.add_surface_from_arrays(Mesh.PRIMITIVE_TRIANGLES, plane_arrays)
-	terrain_mesh.mesh = array_mesh
+	mesh = array_mesh
